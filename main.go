@@ -15,7 +15,7 @@ import (
 const host = "https://www.fang.com/SoufunFamily.htm"
 
 //<a href="http://ningxiang.fang.com/" target="_blank">宁乡</a>
-var houstList2Re = regexp.MustCompile(`<a href="(http://[a-z]{1,20}.fang.com)/" target="_blank">(.+)</a>`)
+var houstList2Re = regexp.MustCompile(`<a href="(http://[a-z0-9A-Z]{1,20}.fang.com)/" target="_blank">(.+)</a>`)
 
 func main() {
 	resp, err := http.Get(host)
@@ -36,10 +36,7 @@ func main() {
 		panic(err)
 	}
 
-	match := houstList2Re.FindAllSubmatch(content,-1)
-	for i,m := range match {
-		fmt.Printf("%d: %s,%s\n",i,m[2],m[1])
-	}
+	printCityList(content)
 }
 
 func determineEncoding(r io.Reader) (e encoding.Encoding) {
@@ -48,7 +45,14 @@ func determineEncoding(r io.Reader) (e encoding.Encoding) {
 		panic(err)
 	}
 
-	e, name, b := charset.DetermineEncoding(bytes,"")
-	fmt.Println(e,name,b)
+	e, _, _ = charset.DetermineEncoding(bytes,"")
+	//fmt.Println(e,name,b)
 	return
+}
+
+func printCityList(content []byte) {
+	matchs := houstList2Re.FindAllSubmatch(content,-1)
+	for i,m := range matchs {
+		fmt.Printf("%d: City:%s,Url:%s\n",i,m[2],m[1])
+	}
 }
