@@ -15,6 +15,9 @@ func ParseCityList(contents []byte) engine.ParseResult {
 
 	//每一个url生成一个新的request
 	result := engine.ParseResult{}
+
+	limit := 10
+
 	for _,m := range matchs {
 		result.Items = append(result.Items,string(m[2]))
 		result.Requests = append(result.Requests,
@@ -22,6 +25,10 @@ func ParseCityList(contents []byte) engine.ParseResult {
 			Url:        UrlTransNewhourse(string(m[1])),
 			ParserFunc: ParseCity,
 		})
+		limit --
+		if limit == 0 {
+			break
+		}
 		//fmt.Printf("%d: City:%s,Url:%s\n",i,m[2],m[1])
 	}
 	return result
