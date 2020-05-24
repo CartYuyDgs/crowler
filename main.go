@@ -12,7 +12,7 @@ func main() {
 
 	e := engine.ConcurrentEngine{
 		Scheduler: &schaduler.SimpleScheduler{},
-		WorkerCount: 10,
+		WorkerCount: 100,
 	}
 	e.Run(engine.Request{
 		Url: host,

@@ -51,7 +51,7 @@ func TransHouseProfile(contents []byte) engine.ParseResult {
 }
 
 func ParseDetailInfo(contents []byte) engine.ParseResult {
-	log.Println("commin in  ParseDetailInfo....................")
+	//log.Println("commin in  ParseDetailInfo....................")
 	houseProfile := model.HouseProfile{}
 
 	houseName := extractString(contents,houstnameRe)
@@ -94,7 +94,7 @@ func ParseDetailInfo(contents []byte) engine.ParseResult {
 	houseNum := extractString(contents, houseNumRe)
 	houseProfile.HouseNum = houseNum
 
-	log.Println("comman in  ParseDetailInfo...........end.........")
+	//log.Println("comman in  ParseDetailInfo...........end.........")
 
 	result := engine.ParseResult{
 		Items: []interface{} {houseProfile},
