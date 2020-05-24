@@ -16,7 +16,7 @@ func ParseCityList(contents []byte) engine.ParseResult {
 	//每一个url生成一个新的request
 	result := engine.ParseResult{}
 
-	limit := 10
+	limit := 2
 
 	for _,m := range matchs {
 		result.Items = append(result.Items,string(m[2]))

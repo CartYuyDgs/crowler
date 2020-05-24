@@ -31,7 +31,7 @@ func ParseCity(contents []byte) engine.ParseResult {
 		result.Requests = append(result.Requests,
 			engine.Request{
 				Url:        "https://"+string(m[2]),
-				ParserFunc: ParseDetailInfo,
+				ParserFunc: TransHouseProfile,
 			})
 
 	}
