@@ -11,7 +11,7 @@ const host = "https://www.fang.com/SoufunFamily.htm"
 func main() {
 
 	e := engine.ConcurrentEngine{
-		Scheduler: &schaduler.SimpleScheduler{},
+		Scheduler: &schaduler.QueudScheduler{},
 		WorkerCount: 100,
 	}
 	e.Run(engine.Request{
